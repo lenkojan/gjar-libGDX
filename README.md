@@ -7,5 +7,5 @@
 ## Links
 [libGDX](https://libgdx.badlogicgames.com/)<br/>
 [Java basics](https://www.tutorialspoint.com/java/index.htm)<br/>
-[Android Studio](https://www.tutorialspoint.com/java/index.htm)<br/>
-[tile assets](http://github.com)
+[Android Studio](https://developer.android.com/studio/)<br/>
+[tile assets](https://www.gameart2d.com/freebies.html)
