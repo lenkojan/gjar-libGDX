@@ -131,5 +131,8 @@ public class Game3 extends ApplicationAdapter {
         platformLeft.dispose();
         platformCenter.dispose();
         platformRight.dispose();
+        /* disposing zombie texture
+        zombieTexture.dispose();
+        */
     }
 }
