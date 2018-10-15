@@ -94,7 +94,6 @@ public class Game4 extends ApplicationAdapter {
         batch.dispose();
         bg.dispose();
         shapeRenderer.dispose();
-        bg.dispose();
         if (textures != null && textures.length > 0) {
             for (Texture texture : textures) {
                 texture.dispose();
