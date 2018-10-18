@@ -3,7 +3,7 @@
 ### Lesson 4
 1. Keyboard input processing
 1. Collision detection
-####Cvičenie
+###Cvičenie
 1. Zmeniť spodný podstavec tak, aby mal len 4 kocky. Postavička počas hry nesmie stáť vo vzduchu.
 1. Zmeniť hru tak, aby celý spodný podstavec plával vo výške 200px.
 1. Zmeniť hru tak, aby Zombie začínal na pravej strane a smeroval k hubke.
