@@ -154,6 +154,13 @@ public class Game5 extends ApplicationAdapter {
     @Override
     public void dispose() {
         batch.dispose();
-
+        shapeRenderer.dispose();
+        bg.dispose();
+        if (textures != null && textures.length > 0) {
+            for (Texture texture : textures) {
+                texture.dispose();
+            }
+        }
+        textureAtlas.dispose();
     }
 }
