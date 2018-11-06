@@ -1,5 +1,17 @@
 # GJAR - libGDX
 ## Lessons
+### Lesson 6
+1. Split code into objects
+1. Basics of object oriented programing
+### Cvičenie
+1. Upraviť logiku skoku aby sa viac podobala reálnemu skoku
+1. Pridať huby do levelu
+1. (Bonus) Pridať logiku aby sa huby dali "zjesť"
+### Lesson 5
+1. Animations
+1. Character state manipulation
+### Cvičenie
+1. Vytvoriť hru tak, aby boli 2 druhy hub. Jedna bude neškodná, druhá jedovatá. Jedovatá sa zobrazí vždy po skonzumovaní jedlej a zmizne po 2 sekundách. Ak postavička "zje" zlú hubu spustí sa dead animácia a hra končí.
 ### Lesson 4
 1. Keyboard input processing
 1. Collision detection
