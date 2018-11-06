@@ -1,3 +1,4 @@
+![logo](https://github.com/lenkojan/gjar-libGDX/blob/master/assets/logo.png)
 # GJAR - libGDX
 ## Lessons
 ### Lesson 6
