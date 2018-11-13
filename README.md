@@ -1,6 +1,12 @@
-![logo](https://github.com/lenkojan/gjar-libGDX/blob/master/assets/logo.png)
 # GJAR - libGDX
 ## Lessons
+### Lesson 7
+1. libGDX kamera a viewPort
+1. Box2D
+### Cvičenie
+1. Pridať hornú, ľavú a pravú stenu aby bol pohyb lopty ohraničený zo všetkých strán
+1. Pridať 3 lopty
+1. Umiestniť 3 statické prekážky na plochu
 ### Lesson 6
 1. Split code into objects
 1. Basics of object oriented programing
