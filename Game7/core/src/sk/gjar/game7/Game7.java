@@ -52,14 +52,36 @@ public class Game7 extends ApplicationAdapter {
         debugRenderer = new Box2DDebugRenderer();
         createBallObject();
         createBottomObject();
+        createLeftObject();
+        createRightObject();
     }
 
     private void createBottomObject() {
         BodyDef groundBodyDef = new BodyDef();
-        groundBodyDef.position.set(new Vector2(0, 0.1f));
+        groundBodyDef.position.set(new Vector2(camera.viewportWidth / 2, 0.1f));
         Body groundBody = world.createBody(groundBodyDef);
         PolygonShape groundBox = new PolygonShape();
-        groundBox.setAsBox(camera.viewportWidth, 0.1f);
+        groundBox.setAsBox(camera.viewportWidth / 2, 0.1f);
+        groundBody.createFixture(groundBox, 0.0f);
+        groundBox.dispose();
+    }
+
+    private void createLeftObject() {
+        BodyDef groundBodyDef = new BodyDef();
+        groundBodyDef.position.set(new Vector2(0.1f, camera.viewportHeight / 2));
+        Body groundBody = world.createBody(groundBodyDef);
+        PolygonShape groundBox = new PolygonShape();
+        groundBox.setAsBox(0.1f, camera.viewportHeight / 2);
+        groundBody.createFixture(groundBox, 0.0f);
+        groundBox.dispose();
+    }
+
+    private void createRightObject() {
+        BodyDef groundBodyDef = new BodyDef();
+        groundBodyDef.position.set(new Vector2(camera.viewportWidth - 0.1f, camera.viewportHeight / 2));
+        Body groundBody = world.createBody(groundBodyDef);
+        PolygonShape groundBox = new PolygonShape();
+        groundBox.setAsBox(0.1f, camera.viewportHeight / 2);
         groundBody.createFixture(groundBox, 0.0f);
         groundBox.dispose();
     }
