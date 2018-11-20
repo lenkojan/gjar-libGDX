@@ -13,6 +13,7 @@ public class Level {
     private final float height;
     private final Texture bg;
     Array<Tile> tiles;
+    Tile[] platform;
 
     public Level(World world, float width, float height) {
         this.width = width;
@@ -20,8 +21,13 @@ public class Level {
         this.bg = new Texture("BG.png");
         this.tiles = new Array<Tile>();
         float usedWidth = 0;
+        platform = new Tile[3];
+        platform[0] = new Tile(world, 3, 2.01f,"13.png");
+        platform[1] = new Tile(world, 4, 2.01f,"14.png");
+        platform[2] = new Tile(world, 5, 2.01f,"15.png");
         while (usedWidth < width) {
-            this.tiles.add(new Tile(world, usedWidth, 0));
+            Tile tile = new Tile(world, usedWidth, 0,"2.png");
+            this.tiles.add(tile);
             usedWidth += Tile.WIDTH;
         }
         //ground
@@ -58,6 +64,9 @@ public class Level {
         spriteBatch.draw(this.bg, 0, 0, this.width, this.height);
         for (Tile tile : this.tiles) {
             tile.draw(spriteBatch);
+        }
+        for (int i = 0; i < platform.length; i++) {
+            platform[i].draw(spriteBatch);
         }
     }
 }

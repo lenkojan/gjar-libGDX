@@ -52,7 +52,7 @@ public class Game8 extends ApplicationAdapter {
         world.step(deltaTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         character.update(deltaTime);
         spriteBatch.begin();
-        //level.draw(spriteBatch);
+        level.draw(spriteBatch);
         character.draw(spriteBatch);
         spriteBatch.end();
         debugRenderer.render(world, camera.combined);

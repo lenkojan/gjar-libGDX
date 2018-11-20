@@ -37,7 +37,7 @@ public class Character {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(3, 3);
+        bodyDef.position.set(1, 3);
         characterBody = world.createBody(bodyDef);
         CircleShape circle = new CircleShape();
         circle.setRadius(characterHeight / 2);
