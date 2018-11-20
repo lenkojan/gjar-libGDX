@@ -1,5 +1,10 @@
 # GJAR - libGDX
 ## Lessons
+### Lesson 8
+1. libGDX Box2D and animations
+### Cvičenie
+1. Pridať prvú platformu na ktorú sa dá vyskočiť 
+1. Použiť rôzne textury na vytvorenie platformy
 ### Lesson 7
 1. libGDX kamera a viewPort
 1. Box2D
