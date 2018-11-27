@@ -11,10 +11,10 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Tile {
     public static final float WIDTH = 1f;
     public static final float HEIGHT = 1f;
-    private final Sprite sprite;
+    public Sprite sprite;
 
-    public Tile(World world, float positionX, float positionY, String textureName) {
-        this.sprite = new Sprite(new Texture(textureName));
+    public Tile(World world, float positionX, float positionY) {
+        this.sprite = new Sprite(new Texture(getTextureId()));
         this.sprite.setPosition(positionX, positionY);
         this.sprite.setSize(WIDTH, HEIGHT);
         BodyDef groundBodyDef = new BodyDef();
@@ -27,7 +27,16 @@ public class Tile {
 
     }
 
+    public String getTextureId() {
+        return "2.png";
+    }
+
     public void draw(SpriteBatch spriteBatch) {
         this.sprite.draw(spriteBatch);
+    }
+
+    public void setSprite(String textureId) {
+        this.sprite = new Sprite(new Texture(textureId));
+
     }
 }

@@ -22,11 +22,11 @@ public class Level {
         this.tiles = new Array<Tile>();
         float usedWidth = 0;
         platform = new Tile[3];
-        platform[0] = new Tile(world, 3, 2.01f,"13.png");
-        platform[1] = new Tile(world, 4, 2.01f,"14.png");
-        platform[2] = new Tile(world, 5, 2.01f,"15.png");
+        platform[0] = new TileL(world, 3, 2.01f);
+        platform[1] = new TileC(world, 4, 2.01f);
+        platform[2] = new TileR(world, 5, 2.01f);
         while (usedWidth < width) {
-            Tile tile = new Tile(world, usedWidth, 0,"2.png");
+            Tile tile = new Tile(world, usedWidth, 0);
             this.tiles.add(tile);
             usedWidth += Tile.WIDTH;
         }
