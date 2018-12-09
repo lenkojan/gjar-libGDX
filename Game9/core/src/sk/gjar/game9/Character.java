@@ -39,7 +39,7 @@ public class Character {
         bodyDef.position.set(1, 3);
         characterBody = world.createBody(bodyDef);
         characterBody.setBullet(true);
-        
+
         CircleShape circle = new CircleShape();
         circle.setRadius(characterHeight / 2);
         FixtureDef fixtureDef = new FixtureDef();
@@ -73,12 +73,12 @@ public class Character {
         } else {
             movementStop -= deltaTime;
         }
-        if ((characterBody.getLinearVelocity().x > VELOCITY_MARGIN || characterBody.getLinearVelocity().x < -VELOCITY_MARGIN) && (grounded)) {
+        if ((characterBody.getLinearVelocity().x > VELOCITY_MARGIN || characterBody.getLinearVelocity().x < -VELOCITY_MARGIN) && (state != CharacterState.Jumping)) {
             if (!state.equals(CharacterState.Walking)) {
                 state = CharacterState.Walking;
                 stateTime = 0;
             }
-        } else if (grounded) {
+        } else if (state != CharacterState.Jumping) {
             if (state != CharacterState.Idle) {
                 state = CharacterState.Idle;
                 stateTime = 0;

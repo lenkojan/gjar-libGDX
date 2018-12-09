@@ -12,7 +12,9 @@ public class Level {
     private final float width;
     private final float height;
     private final Texture bg;
+    private final Tree tree;
     Array<Tile> tiles;
+    Array<Gift> gifts;
     Tile[] platform;
 
     public Level(World world, float width, float height) {
@@ -22,9 +24,9 @@ public class Level {
         this.tiles = new Array<Tile>();
         float usedWidth = 0;
         platform = new Tile[3];
-        platform[0] = new TileL(world, 3, 2.01f);
-        platform[1] = new TileC(world, 4, 2.01f);
-        platform[2] = new TileR(world, 5, 2.01f);
+        platform[0] = new TileL(world, 3, 2.1f);
+        platform[1] = new TileC(world, 4, 2.1f);
+        platform[2] = new TileR(world, 5, 2.1f);
         while (usedWidth < width) {
             Tile tile = new Tile(world, usedWidth, 0);
             this.tiles.add(tile);
@@ -58,6 +60,10 @@ public class Level {
         topEdge.set(0, height, width, height);
         topBody.createFixture(topEdge, 0.0f);
         topEdge.dispose();
+
+        tree = new Tree(world, 7, 1);
+        gifts = new Array<Gift>();
+        gifts.add(new Gift(world, 4, 1, 6.9f, 1));
     }
 
     public void draw(SpriteBatch spriteBatch) {
@@ -67,6 +73,16 @@ public class Level {
         }
         for (int i = 0; i < platform.length; i++) {
             platform[i].draw(spriteBatch);
+        }
+        tree.draw(spriteBatch);
+        for (Gift gift : gifts) {
+            gift.draw(spriteBatch);
+        }
+    }
+
+    public void showGifts() {
+        for (Gift gift : gifts) {
+            gift.show();
         }
     }
 }

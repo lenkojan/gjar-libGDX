@@ -49,37 +49,63 @@ public class Game9 extends ApplicationAdapter {
         float deltaTime = Gdx.graphics.getDeltaTime();
         handleUserInput();
         world.step(deltaTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+        checkForPackages();
+        checkForTree();
         character.setGrounded(isPlayerGrounded(Gdx.graphics.getDeltaTime()));
         character.update(deltaTime);
         spriteBatch.begin();
         level.draw(spriteBatch);
         character.draw(spriteBatch);
         spriteBatch.end();
-        debugRenderer.render(world, camera.combined);
+        //debugRenderer.render(world, camera.combined);
     }
 
     private boolean isPlayerGrounded(float deltaTime) {
         Array<Contact> contactList = world.getContactList();
-        for(int i = 0; i < contactList.size; i++) {
+        for (int i = 0; i < contactList.size; i++) {
             Contact contact = contactList.get(i);
-            if(contact.isTouching() && (contact.getFixtureA() == character.getSensorFixture() ||
+            if (contact.isTouching() && (contact.getFixtureA() == character.getSensorFixture() ||
                     contact.getFixtureB() == character.getSensorFixture())) {
-
                 Vector2 pos = character.getPosition();
                 WorldManifold manifold = contact.getWorldManifold();
                 boolean below = true;
-                for(int j = 0; j < manifold.getNumberOfContactPoints(); j++) {
+                for (int j = 0; j < manifold.getNumberOfContactPoints(); j++) {
                     below &= (manifold.getPoints()[j].y < pos.y - 0.001f);
                 }
 
-                if(below) {
+                if (below) {
                     return true;
                 }
-
                 return false;
             }
         }
         return false;
+    }
+
+    private void checkForPackages() {
+        Array<Contact> contactList = world.getContactList();
+        for (int i = 0; i < contactList.size; i++) {
+            Contact contact = contactList.get(i);
+            if (contact.getFixtureA().getBody().getUserData() instanceof Gift) {
+                ((Gift) contact.getFixtureA().getBody().getUserData()).consume(world);
+            } else if (contact.getFixtureB().getBody().getUserData() instanceof Gift) {
+                ((Gift) contact.getFixtureB().getBody().getUserData()).consume(world);
+            }
+        }
+    }
+
+    private void checkForTree() {
+        Array<Contact> contactList = world.getContactList();
+        for (int i = 0; i < contactList.size; i++) {
+            Contact contact = contactList.get(i);
+            if (contact.getFixtureA().getBody().getUserData() instanceof Tree) {
+                ((Tree) contact.getFixtureA().getBody().getUserData()).consume(world);
+                level.showGifts();
+            } else if (contact.getFixtureB().getBody().getUserData() instanceof Tree) {
+                ((Tree) contact.getFixtureB().getBody().getUserData()).consume(world);
+                level.showGifts();
+            }
+        }
     }
 
     private void handleUserInput() {
