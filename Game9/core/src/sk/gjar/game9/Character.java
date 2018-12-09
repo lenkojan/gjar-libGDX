@@ -1,7 +1,5 @@
 package sk.gjar.game9;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -16,24 +14,22 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Character {
 
-    private static final float MAX_SPEED = 1f;
+    private static final float MAX_SPEED = 0.35f;
+    private static final float MAX_MOVEMENT_TIMEOUT = 0.2f;
+    private static final float VELOCITY_MARGIN = 0.05f;
     private final Body characterBody;
-    private final Fixture characterPhysicsFixture;
     private final Animation<TextureRegion> idleAnimation;
     private final Animation<TextureRegion> walkAnimation;
     private final Animation<TextureRegion> jumpAnimation;
     private final Animation<TextureRegion> deadAnimation;
     private final float characterHeight;
+    private final Fixture fixture;
     private CharacterState state;
     private float stateTime;
     private final TextureAtlas textureAtlas;
-
+    private float movementStop;
     private boolean isFacingRight = true;
     private boolean grounded;
-    private long lastGroundTime;
-    private float stillTime;
-    private boolean jump;
-
 
     public Character(World world) {
         this.characterHeight = 1f;
@@ -43,9 +39,7 @@ public class Character {
         bodyDef.position.set(1, 3);
         characterBody = world.createBody(bodyDef);
         characterBody.setBullet(true);
-        characterBody.setFixedRotation(true);
-        characterBody.setUserData(this);
-
+        
         CircleShape circle = new CircleShape();
         circle.setRadius(characterHeight / 2);
         FixtureDef fixtureDef = new FixtureDef();
@@ -53,14 +47,12 @@ public class Character {
         fixtureDef.density = 0.3f;
         fixtureDef.friction = 0f;
         fixtureDef.restitution = 0f;
-        characterPhysicsFixture = characterBody.createFixture(fixtureDef);
+
+        fixture = characterBody.createFixture(fixtureDef);
+        characterBody.setUserData(this);
         circle.dispose();
-/*
-        PolygonShape poly = new PolygonShape();
-        poly.setAsBox(0.25f, 0.48f);
-        characterPhysicsFixture = characterBody.createFixture(poly, 1);
-        poly.dispose();
-        */
+
+
         state = CharacterState.Idle;
         stateTime = 0;
         textureAtlas = new TextureAtlas("santa.atlas");
@@ -76,65 +68,20 @@ public class Character {
 
     public void update(float deltaTime) {
         stateTime += deltaTime;
-        characterBody.setAwake(true);
-        Vector2 vel = characterBody.getLinearVelocity();
-        Vector2 pos = characterBody.getPosition();
-
-        if (grounded) {
-            lastGroundTime = System.nanoTime();
+        if (movementStop <= 0 && characterBody.getLinearVelocity().x != 0) {
+            characterBody.setLinearVelocity(0, characterBody.getLinearVelocity().y);
         } else {
-            if (System.nanoTime() - lastGroundTime < 100000000) {
-                grounded = true;
+            movementStop -= deltaTime;
+        }
+        if ((characterBody.getLinearVelocity().x > VELOCITY_MARGIN || characterBody.getLinearVelocity().x < -VELOCITY_MARGIN) && (grounded)) {
+            if (!state.equals(CharacterState.Walking)) {
+                state = CharacterState.Walking;
+                stateTime = 0;
             }
-        }
-
-        // cap max velocity on x
-        if (Math.abs(vel.x) > MAX_SPEED) {
-            vel.x = Math.signum(vel.x) * MAX_SPEED;
-            characterBody.setLinearVelocity(vel.x, vel.y);
-        }
-
-        // calculate stilltime & damp
-        if (!Gdx.input.isKeyPressed(Input.Keys.A) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
-            stillTime += Gdx.graphics.getDeltaTime();
-            characterBody.setLinearVelocity(vel.x * 0.9f, vel.y);
-        } else {
-            stillTime = 0;
-        }
-
-        // disable friction while jumping
-        if (!grounded) {
-            characterPhysicsFixture.setFriction(0f);
-            //characterSensorFixture.setFriction(0f);
-        } else {
-            if (!Gdx.input.isKeyPressed(Input.Keys.A) && !Gdx.input.isKeyPressed(Input.Keys.D) && stillTime > 0.2) {
-                characterPhysicsFixture.setFriction(100f);
-                //characterSensorFixture.setFriction(100f);
-            } else {
-                characterPhysicsFixture.setFriction(0.2f);
-                //characterSensorFixture.setFriction(0.2f);
-            }
-        }
-
-        // apply left impulse, but only if max velocity is not reached yet
-        if (Gdx.input.isKeyPressed(Input.Keys.A) && vel.x > -MAX_SPEED) {
-            characterBody.applyLinearImpulse(-2f, 0, pos.x, pos.y, true);
-        }
-
-        // apply right impulse, but only if max velocity is not reached yet
-        if (Gdx.input.isKeyPressed(Input.Keys.D) && vel.x < MAX_SPEED) {
-            characterBody.applyLinearImpulse(2f, 0, pos.x, pos.y, true);
-        }
-
-        // jump, but only when grounded
-        if (jump) {
-            jump = false;
-            if (grounded) {
-                characterBody.setLinearVelocity(vel.x, 0);
-                System.out.println("jump before: " + characterBody.getLinearVelocity());
-                characterBody.setTransform(pos.x, pos.y + 0.01f, 0);
-                characterBody.applyLinearImpulse(0, 3, pos.x, pos.y, true);
-                System.out.println("jump, " + characterBody.getLinearVelocity());
+        } else if (grounded) {
+            if (state != CharacterState.Idle) {
+                state = CharacterState.Idle;
+                stateTime = 0;
             }
         }
     }
@@ -159,34 +106,51 @@ public class Character {
     }
 
     public void jump() {
-        this.jump = true;
+        if (state != CharacterState.Jumping && grounded) {
+            characterBody.applyForceToCenter(0, 50f, true);
+            state = CharacterState.Jumping;
+            stateTime = 0;
+        }
     }
 
     public void moveLeft() {
-        if (isFacingRight) {
-            flipAnimations();
-            isFacingRight = false;
+        movementStop = MAX_MOVEMENT_TIMEOUT;
+        if (characterBody.getLinearVelocity().x > -MAX_SPEED) {
+            characterBody.applyForceToCenter(-40f, 0f, true);
+
+            if (isFacingRight) {
+                flipAnimations();
+                isFacingRight = false;
+            }
         }
     }
 
     public void moveRight() {
-        if (!isFacingRight) {
-            flipAnimations();
-            isFacingRight = true;
+        movementStop = MAX_MOVEMENT_TIMEOUT;
+        if (characterBody.getLinearVelocity().x < MAX_SPEED) {
+            characterBody.applyForceToCenter(40f, 0f, true);
+
+            if (!isFacingRight) {
+                flipAnimations();
+                isFacingRight = true;
+            }
         }
+    }
+
+    public Fixture getSensorFixture() {
+        return fixture;
     }
 
     public Vector2 getPosition() {
         return characterBody.getPosition();
     }
 
-    public Fixture getSensorFixture() {
-        return characterPhysicsFixture;
-    }
-
     public void setGrounded(boolean grounded) {
-        //Gdx.app.log("Character", grounded ? "Character is grounded" : "Character is not grounded");
         this.grounded = grounded;
+        if (grounded && state == CharacterState.Jumping) {
+            state = CharacterState.Idle;
+            stateTime = 0;
+        }
     }
 
     private enum CharacterState {
