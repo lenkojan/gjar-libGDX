@@ -1,5 +1,10 @@
 # GJAR - libGDX
 ## Lessons
+### Lesson 10
+1. Pohyb s kamerou
+1. Rozšírenie levelu
+### Cvičenie
+1. Umožniť pohyb kamery smerom hore a dole
 ### Lesson 8
 1. libGDX Box2D and animations
 ### Cvičenie
