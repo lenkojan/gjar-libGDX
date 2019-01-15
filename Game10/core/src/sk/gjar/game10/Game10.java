@@ -25,21 +25,26 @@ public class Game10 extends ApplicationAdapter {
     private Character character;
     private float cameraWidth;
     private float worldWidth;
+    private float worldHeight;
+    private float cameraHeight;
 
     @Override
     public void create() {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        cameraWidth = 6 * (w / h);
-        worldWidth = cameraWidth * 2;
-        camera = new OrthographicCamera(cameraWidth, 6);
+        cameraHeight = 6;
+        cameraWidth = cameraHeight * (w / h);
+
+        worldWidth = cameraWidth * 3;
+        worldHeight = cameraHeight * 2;
+        camera = new OrthographicCamera(cameraWidth, cameraHeight);
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         spriteBatch = new SpriteBatch();
         Box2D.init();
         world = new World(new Vector2(0, -10), true);
         debugRenderer = new Box2DDebugRenderer();
-        level = new Level(world, worldWidth, camera.viewportHeight);
+        level = new Level(world, worldWidth, worldHeight);
         character = new Character(world);
     }
 
@@ -80,6 +85,22 @@ public class Game10 extends ApplicationAdapter {
         }
         if (camera.position.x > worldWidth - cameraWidth / 2) {
             camera.position.x = worldWidth - cameraWidth / 2;
+        }
+        if (camera.position.y > cameraHeight / 2) {
+            if (character.getPosition().y < camera.position.y) {
+                camera.position.y = character.getPosition().y;
+            }
+        }
+        if (camera.position.y < worldHeight - cameraHeight / 2) {
+            if (character.getPosition().y > camera.position.y) {
+                camera.position.y = character.getPosition().y;
+            }
+        }
+        if (camera.position.y < cameraHeight / 2) {
+            camera.position.y = cameraHeight / 2;
+        }
+        if (camera.position.y > worldHeight - cameraHeight / 2) {
+            camera.position.y = worldHeight - cameraHeight / 2;
         }
     }
 

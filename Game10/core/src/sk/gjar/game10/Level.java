@@ -18,6 +18,8 @@ public class Level {
     Array<Gift> gifts;
     Tile[] platform;
     Tile[] platform2;
+    Tile[] platform3;
+    Tile[] platform4;
 
     public Level(World world, float width, float height) {
         this.width = width;
@@ -34,6 +36,17 @@ public class Level {
         platform2[0] = new TileL(world, 10, 2.5f);
         platform2[1] = new TileC(world, 11, 2.5f);
         platform2[2] = new TileR(world, 12, 2.5f);
+
+        platform3 = new Tile[3];
+        platform3[0] = new TileL(world, 15, 3f);
+        platform3[1] = new TileC(world, 16, 3f);
+        platform3[2] = new TileR(world, 17, 3f);
+
+        platform4 = new Tile[3];
+        platform4[0] = new TileL(world, 4, 4f);
+        platform4[1] = new TileC(world, 5, 4f);
+        platform4[2] = new TileR(world, 6, 4f);
+
         while (usedWidth < width) {
             Tile tile = new Tile(world, usedWidth, 0);
             this.tiles.add(tile);
@@ -83,6 +96,12 @@ public class Level {
         }
         for (int i = 0; i < platform2.length; i++) {
             platform2[i].draw(spriteBatch);
+        }
+        for (int i = 0; i < platform3.length; i++) {
+            platform3[i].draw(spriteBatch);
+        }
+        for (int i = 0; i < platform4.length; i++) {
+            platform4[i].draw(spriteBatch);
         }
         tree.draw(spriteBatch);
         for (Gift gift : gifts) {
