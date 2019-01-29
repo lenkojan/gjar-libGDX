@@ -164,7 +164,7 @@ public class Game10 extends ApplicationAdapter {
     }
 
     private void handleUserInput() {
-        if (introImage != null && Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+        if (introImage != null && Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
             introImage = null;
         } else {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
