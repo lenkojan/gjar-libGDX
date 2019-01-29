@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -27,6 +29,7 @@ public class Game10 extends ApplicationAdapter {
     private float worldWidth;
     private float worldHeight;
     private float cameraHeight;
+    private Sprite introImage;
 
     @Override
     public void create() {
@@ -46,6 +49,8 @@ public class Game10 extends ApplicationAdapter {
         debugRenderer = new Box2DDebugRenderer();
         level = new Level(world, worldWidth, worldHeight);
         character = new Character(world);
+        introImage = new Sprite(new Texture("intro.jpg"));
+        introImage.setSize(cameraWidth, cameraHeight);
     }
 
     @Override
@@ -54,19 +59,25 @@ public class Game10 extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         spriteBatch.setProjectionMatrix(camera.combined);
-        float deltaTime = Gdx.graphics.getDeltaTime();
         handleUserInput();
-        world.step(deltaTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
-        checkForPackages();
-        checkForTree();
-        character.setGrounded(isPlayerGrounded(Gdx.graphics.getDeltaTime()));
-        character.update(deltaTime);
-        updateCamera();
-        spriteBatch.begin();
-        level.draw(spriteBatch);
-        character.draw(spriteBatch);
-        spriteBatch.end();
-        debugRenderer.render(world, camera.combined);
+        if (introImage != null) {
+            spriteBatch.begin();
+            introImage.draw(spriteBatch);
+            spriteBatch.end();
+        } else {
+            float deltaTime = Gdx.graphics.getDeltaTime();
+            world.step(deltaTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+            checkForPackages();
+            checkForTree();
+            character.setGrounded(isPlayerGrounded(Gdx.graphics.getDeltaTime()));
+            character.update(deltaTime);
+            updateCamera();
+            spriteBatch.begin();
+            level.draw(spriteBatch);
+            character.draw(spriteBatch);
+            spriteBatch.end();
+            debugRenderer.render(world, camera.combined);
+        }
     }
 
     private void updateCamera() {
@@ -153,14 +164,18 @@ public class Game10 extends ApplicationAdapter {
     }
 
     private void handleUserInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            character.moveLeft();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            character.moveRight();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            character.jump();
+        if (introImage != null && Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+            introImage = null;
+        } else {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                character.moveLeft();
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                character.moveRight();
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+                character.jump();
+            }
         }
     }
 
