@@ -1,0 +1,360 @@
+
+dino.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Jump
+  rotate: false
+  xy: 2, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 1
+Jump
+  rotate: false
+  xy: 2, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 2
+Jump
+  rotate: false
+  xy: 684, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 3
+Jump
+  rotate: false
+  xy: 1366, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 4
+Jump
+  rotate: false
+  xy: 2, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 5
+Jump
+  rotate: false
+  xy: 684, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 6
+Jump
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 7
+Jump
+  rotate: false
+  xy: 2, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 8
+Jump
+  rotate: false
+  xy: 684, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 9
+Jump
+  rotate: false
+  xy: 1366, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 0
+Idle
+  rotate: false
+  xy: 1366, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 0
+Walk
+  rotate: false
+  xy: 1366, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 8
+Walk
+  rotate: false
+  xy: 684, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 4
+
+dino2.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Run
+  rotate: false
+  xy: 2, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 3
+Run
+  rotate: false
+  xy: 2, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 1
+Run
+  rotate: false
+  xy: 684, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 2
+Run
+  rotate: false
+  xy: 1366, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 6
+Run
+  rotate: false
+  xy: 684, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 7
+Run
+  rotate: false
+  xy: 1366, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 4
+Walk
+  rotate: false
+  xy: 2, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 0
+Walk
+  rotate: false
+  xy: 684, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 1
+Walk
+  rotate: false
+  xy: 1366, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 2
+Walk
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 5
+Walk
+  rotate: false
+  xy: 2, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 6
+Walk
+  rotate: false
+  xy: 684, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 7
+
+dino3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Idle
+  rotate: false
+  xy: 2, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 2
+Idle
+  rotate: false
+  xy: 2, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 3
+Idle
+  rotate: false
+  xy: 684, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 4
+Idle
+  rotate: false
+  xy: 1366, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 5
+Idle
+  rotate: false
+  xy: 2, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 1
+Idle
+  rotate: false
+  xy: 684, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 7
+Idle
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 8
+Idle
+  rotate: false
+  xy: 2, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 9
+Jump
+  rotate: false
+  xy: 1366, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 10
+Jump
+  rotate: false
+  xy: 684, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 11
+Walk
+  rotate: false
+  xy: 684, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 3
+Walk
+  rotate: false
+  xy: 1366, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 9
+
+dino4.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Dead
+  rotate: false
+  xy: 2, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 0
+Dead
+  rotate: false
+  xy: 684, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 1
+Dead
+  rotate: false
+  xy: 1366, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 2
+Dead
+  rotate: false
+  xy: 2, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 3
+Dead
+  rotate: false
+  xy: 684, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 4
+Dead
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 5
+Dead
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 7
+Dead
+  rotate: false
+  xy: 1366, 950
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 6
+Idle
+  rotate: false
+  xy: 684, 476
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 6
+Run
+  rotate: false
+  xy: 2, 1424
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 0
+Run
+  rotate: false
+  xy: 2, 2
+  size: 680, 472
+  orig: 680, 472
+  offset: 0, 0
+  index: 5
