@@ -1,3 +1,5 @@
+![GitHub Logo](/assets/gjar-logo.jpg)
+
 # GJAR - libGDX
 ## Lessons
 ### Lesson 10
