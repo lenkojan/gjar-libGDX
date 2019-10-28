@@ -5,6 +5,9 @@
 1. Rozšírenie levelu
 ### Cvičenie
 1. Umožniť pohyb kamery smerom hore a dole
+### Lesson 9
+1. Základný level dizajn
+1. Základ práce s predmetami
 ### Lesson 8
 1. libGDX Box2D and animations
 ### Cvičenie
