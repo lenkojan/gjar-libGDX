@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import javax.swing.text.MaskFormatter;
+
 public class Game6 extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture bg;
@@ -23,6 +25,8 @@ public class Game6 extends ApplicationAdapter {
         bg = new Texture("BG.png");
         level = new Level();
         character = new Character();
+        Mushroom a = new Mushroom();
+        a.mushroom.get
     }
 
     @Override

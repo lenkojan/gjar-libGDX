@@ -63,12 +63,6 @@ public class Game2 extends ApplicationAdapter {
                     batch.draw(textures[templateBG[j][i]], i * bg.getWidth(), j * bg.getHeight());
             }
         }
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                if (template[j][i] != 0)
-                    batch.draw(textures[template[j][i]], i * bg.getWidth(), j * bg.getHeight());
-            }
-        }
         batch.end();
     }
 

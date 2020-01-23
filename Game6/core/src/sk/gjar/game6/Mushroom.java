@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Mushroom {
-    private final Sprite mushroom;
+    public final Sprite mushroom;
     private final boolean isMushroomEaten;
 
     public Mushroom() {
